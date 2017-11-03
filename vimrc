@@ -29,6 +29,12 @@ Plugin 'embear/vim-localvimrc'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'mechatroner/rainbow_csv'
+Plugin 'klen/python-mode'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+
 
 call vundle#end()
 
@@ -54,6 +60,10 @@ augroup END
 autocmd BufRead,BufNewFile
   \ .bowerrc,.jscsrc,.jshintrc,.eslintrc
   \ setfiletype json
+
+" Auto open nerd tree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Enable the mouse
 if has('mouse')
@@ -108,6 +118,8 @@ map \ <Leader>
 map <Leader>y "+y
 "   Paste
 map <Leader>p "+p
+" Toggle nerdtree
+map <C-n> :NERDTreeToggle<CR>
 
 " Grep operator
 nnoremap <Leader>g :set operatorfunc=GrepOperator<cr>g@
